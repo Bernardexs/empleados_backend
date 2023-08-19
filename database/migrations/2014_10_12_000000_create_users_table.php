@@ -14,11 +14,19 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('last_name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+            $table->string('cedula');
+            $table->string('direccion');
+            $table->date('fecha_contratacion');
+            $table->string('foto_perfil')->nullable();
+
+            $table->foreignId('id_rol')->constrained('roles');
+            $table->foreignId('id_puesto')->nullable()->constrained('puestos');
+            $table->foreignId('id_salario')->nullable()->constrained('salarios');
+
+            $table->boolean('estado');
         });
     }
 
